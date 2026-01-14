@@ -4,6 +4,16 @@ A modern full-stack blog/social media platform built with Vue.js and Express.js,
 
 ---
 
+## 🚀 LIVE DEPLOYMENT
+
+**Frontend (Netlify):** https://kinetixpro-fullstackdev.netlify.app/
+
+**GitHub Repository:** https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro
+
+**Note:** Backend is currently running on ngrok tunnel. For permanent deployment, backend needs to be deployed to Vercel or similar cloud platform.
+
+---
+
 ## Table of Contents
 
 - [Requirements](#requirements)
@@ -607,39 +617,50 @@ GET /api/users/:id
 
 ## Testing
 
+### Test Credentials
+
+Use these pre-seeded accounts to test the application:
+
+| Username | Email | Password | Role |
+|----------|-------|----------|------|
+| lukas | lukas@gmail.com | password123 | User |
+| kinetixpro | kinetixpro@gmail.com | password123 | User |
+| talentgrowth | talentgrowth@gmail.com | password123 | User |
+
 ### Manual Testing Checklist
 
 #### User Authentication
+- [ ] Login with test account (lukas@gmail.com / password123)
+- [ ] Logout and verify token is removed
 - [ ] Register new user with valid credentials
 - [ ] Attempt registration with existing email (should fail)
-- [ ] Login with correct credentials
 - [ ] Login with incorrect password (should fail)
-- [ ] Verify JWT token is stored after login
-- [ ] Logout and verify token is removed
 
 #### Post Management
 - [ ] Create new post with title and content
 - [ ] Attempt to create post without title (should fail)
-- [ ] View all posts on home page
+- [ ] View all posts on home page (pre-seeded posts should appear)
 - [ ] Click post to view detail page
-- [ ] Edit own post
+- [ ] Edit own post (lukas can only edit posts created by lukas)
 - [ ] Attempt to edit another user's post (should not show edit button)
-- [ ] Delete own post
-- [ ] Search posts by title
+- [ ] Delete own post (lukas can only delete posts created by lukas)
+- [ ] Search posts by title (test with "Welcome", "Sunset", "Coffee", etc.)
 - [ ] Navigate pagination
 
 #### Comments
-- [ ] Add comment to a post
+- [ ] Add comment to a pre-seeded post (e.g., "Welcome to KinetixPro" post)
 - [ ] Edit own comment
 - [ ] Delete own comment
 - [ ] Verify cannot edit/delete other's comments
+- [ ] View existing comments on posts (pre-seeded comments should appear)
 
 #### Likes & Bookmarks
-- [ ] Like a post
+- [ ] Like a pre-seeded post
 - [ ] Unlike a post
 - [ ] Bookmark a post
 - [ ] Remove bookmark
-- [ ] View bookmarked posts
+- [ ] View bookmarked posts in Bookmarks view
+- [ ] View like count updates on posts
 
 #### Responsive Design
 - [ ] Test on desktop (1920x1080)
@@ -648,27 +669,29 @@ GET /api/users/:id
 
 ### API Testing with cURL
 
+**Test Credentials (from seed.sql):**
 ```bash
-# Register new user
-curl -X POST http://localhost:5000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"username":"testuser","email":"test@test.com","password":"test123"}'
-
-# Login
+# Login as test user
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@test.com","password":"test123"}'
+  -d '{"email":"lukas@gmail.com","password":"password123"}'
 
-# Get all posts
+# Will return JWT token - copy and use in Authorization header
+```
+
+**Examples:**
+
+```bash
+# Get all posts (no auth required)
 curl http://localhost:5000/api/posts
 
 # Get posts with pagination
 curl "http://localhost:5000/api/posts?page=1&limit=5"
 
 # Search posts
-curl "http://localhost:5000/api/posts?search=hello"
+curl "http://localhost:5000/api/posts?search=Welcome"
 
-# Create post (replace TOKEN with actual JWT)
+# Create post (replace TOKEN with actual JWT from login)
 curl -X POST http://localhost:5000/api/posts \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TOKEN" \
@@ -695,6 +718,18 @@ curl -X POST http://localhost:5000/api/posts/1/comments \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TOKEN" \
   -d '{"content":"Nice post!","userId":1}'
+
+# Toggle like on post
+curl -X POST http://localhost:5000/api/posts/1/like \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TOKEN" \
+  -d '{"userId":1}'
+
+# Toggle bookmark on post
+curl -X POST http://localhost:5000/api/posts/1/bookmark \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TOKEN" \
+  -d '{"userId":1}'
 ```
 
 ### Testing with PowerShell
@@ -703,10 +738,63 @@ curl -X POST http://localhost:5000/api/posts/1/comments \
 # Get all posts
 Invoke-RestMethod -Uri "http://localhost:5000/api/posts" -Method Get
 
-# Login
-$body = @{email="test@test.com"; password="test123"} | ConvertTo-Json
-Invoke-RestMethod -Uri "http://localhost:5000/api/auth/login" -Method Post -Body $body -ContentType "application/json"
+# Login with test credentials
+$body = @{email="lukas@gmail.com"; password="password123"} | ConvertTo-Json
+$response = Invoke-RestMethod -Uri "http://localhost:5000/api/auth/login" -Method Post -Body $body -ContentType "application/json"
+$token = $response.token
 ```
+
+---
+
+## Deployment Architecture
+
+### Current Deployment Status
+
+| Component | Platform | Status | URL |
+|-----------|----------|--------|-----|
+| **Frontend** | Netlify | ✅ LIVE | https://kinetixpro-fullstackdev.netlify.app |
+| **Backend** | ngrok (temp) | ✅ RUNNING | https://fancied-acanthine-brian.ngrok-free.dev |
+| **Database** | PostgreSQL (local) | ✅ RUNNING | localhost:5433 |
+
+### Frontend Deployment (Netlify) ✅ COMPLETED
+
+**What's configured:**
+- Automatic deployment on GitHub push to `main` branch
+- Environment variable: `VITE_API_URL` → ngrok backend URL
+- Build command: `npm run build-only` in `/client` directory
+- Static hosting with automatic HTTPS
+
+**Repository:** https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro
+
+**How it works:**
+1. Push code to GitHub `main` branch
+2. Netlify automatically builds and deploys frontend
+3. Changes go live within 2-3 minutes
+
+### Backend Deployment (TO BE DONE)
+
+**Remaining task:** Deploy backend to Vercel or similar platform for 24/7 uptime.
+
+**Current setup uses ngrok (temporary):**
+- ⚠️ URL changes on every restart
+- ⚠️ Requires local computer to be always on
+- ⚠️ Rate limited to 120 requests/minute on free tier
+
+**Next steps for permanent backend:**
+1. Create Vercel account (vercel.com)
+2. Connect GitHub repository to Vercel
+3. Create PostgreSQL database (Supabase/Neon)
+4. Set environment variables:
+   ```
+   DATABASE_URL = postgresql://...
+   JWT_SECRET = your_secret_key
+   NODE_ENV = production
+   ```
+5. Deploy from root repository with:
+   - Root Directory: `server`
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm start`
+6. Update Netlify `VITE_API_URL` environment variable with new Vercel URL
 
 ---
 
