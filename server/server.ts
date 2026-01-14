@@ -8,7 +8,31 @@ import cors from 'cors';
 
 const app = express();
 
-app.use(cors());
+// CORS configuration for different environments
+const corsOptions = {
+    origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+        const allowedOrigins = [
+            'http://localhost:5173',
+            'http://localhost:3000',
+            'https://curious-pasca-0bf0da.netlify.app',
+            /\.ngrok-free\.dev$/,  // Allow all ngrok domains
+            /\.ngrok\.io$/  // Allow ngrok.io domains too
+        ];
+
+        if (!origin || allowedOrigins.some(allowed => 
+            typeof allowed === 'string' ? allowed === origin : allowed.test(origin)
+        )) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
