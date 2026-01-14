@@ -1,6 +1,6 @@
 # KinetixPro
 
-A modern full-stack blog/social media platform built with Vue.js and Express.js, featuring a Twitter-like interface for sharing posts, engaging with content through likes and bookmarks, and receiving real-time notifications.
+A modern full-stack blog/social media platform built with Vue.js and Express.js, featuring an interface for sharing posts, engaging with content through likes and bookmarks, and receiving real-time notifications.
 
 ---
 
@@ -19,13 +19,13 @@ A modern full-stack blog/social media platform built with Vue.js and Express.js,
 Clone the repository and start all services locally (no payment required):
 ```bash
 git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
-cd kinetixpro
+cd Fullstack-Engineer-Intern-KinetixPro
 docker compose up -d --build
 
 # Access:
 # Frontend: http://localhost:5173
 # Backend:  http://localhost:5000
-# Database: http://localhost:5433
+# Database: localhost:5433
 ```
 
 All features work perfectly in local development environment.
@@ -44,6 +44,9 @@ All features work perfectly in local development environment.
 
 ## Table of Contents
 
+- [Important Note](#important-note)
+- [Live Deployment](#live-deployment)
+- [Screenshots](#screenshots)
 - [Requirements](#requirements)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
@@ -52,6 +55,124 @@ All features work perfectly in local development environment.
 - [API Documentation](#api-documentation)
 - [Testing](#testing)
 - [Design Decisions](#design-decisions)
+- [Commit History Format](#commit-history-format)
+- [License](#license)
+- [Author](#author)
+
+---
+
+## Screenshots
+
+All screenshots are available in the [`test/`](test/) folder. Below are the application screenshots organized by page and device:
+
+### Screenshot Index (test/ folder)
+
+| Page | Desktop | Tablet | Mobile |
+|------|---------|--------|--------|
+| Home | [Home-desktop.png](test/Home-desktop.png) | [Home-tab.png](test/Home-tab.png) | [Home-mobile.png](test/Home-mobile.png) |
+| Login | [Login-desktop.png](test/Login-desktop.png) | [Login-tab.png](test/Login-tab.png) | [Login-mobile.png](test/Login-mobile.png) |
+| Notifications | [Notifications-desktop.png](test/Notifications-desktop.png) | [Notifications-tab.png](test/Notifications-tab.png) | [Notifications-mobile.png](test/Notifications-mobile.png) |
+| Profile | [Profile-desktop.png](test/Profile-desktop.png) | [Profile-tab.png](test/Profile-tab.png) | [Profile-mobile.png](test/Profile-mobile.png) |
+
+---
+
+### Home Page
+The main feed displaying all posts with likes, bookmarks, and comments.
+
+<p align="center">
+  <img src="test/Home-desktop.png" alt="Home Page - Desktop" width="800"/>
+</p>
+<p align="center"><em>Home Page - Desktop View</em></p>
+
+<details>
+<summary>View Tablet & Mobile Screenshots</summary>
+
+<p align="center">
+  <img src="test/Home-tab.png" alt="Home Page - Tablet" width="500"/>
+</p>
+<p align="center"><em>Home Page - Tablet View</em></p>
+
+<p align="center">
+  <img src="test/Home-mobile.png" alt="Home Page - Mobile" width="300"/>
+</p>
+<p align="center"><em>Home Page - Mobile View</em></p>
+
+</details>
+
+---
+
+### Login Page
+User authentication page for login and registration.
+
+<p align="center">
+  <img src="test/Login-desktop.png" alt="Login Page - Desktop" width="800"/>
+</p>
+<p align="center"><em>Login Page - Desktop View</em></p>
+
+<details>
+<summary>View Tablet & Mobile Screenshots</summary>
+
+<p align="center">
+  <img src="test/Login-tab.png" alt="Login Page - Tablet" width="500"/>
+</p>
+<p align="center"><em>Login Page - Tablet View</em></p>
+
+<p align="center">
+  <img src="test/Login-mobile.png" alt="Login Page - Mobile" width="300"/>
+</p>
+<p align="center"><em>Login Page - Mobile View</em></p>
+
+</details>
+
+---
+
+### Profile Page
+User profile displaying personal information and posts.
+
+<p align="center">
+  <img src="test/Profile-desktop.png" alt="Profile Page - Desktop" width="800"/>
+</p>
+<p align="center"><em>Profile Page - Desktop View</em></p>
+
+<details>
+<summary>View Tablet & Mobile Screenshots</summary>
+
+<p align="center">
+  <img src="test/Profile-tab.png" alt="Profile Page - Tablet" width="500"/>
+</p>
+<p align="center"><em>Profile Page - Tablet View</em></p>
+
+<p align="center">
+  <img src="test/Profile-mobile.png" alt="Profile Page - Mobile" width="300"/>
+</p>
+<p align="center"><em>Profile Page - Mobile View</em></p>
+
+</details>
+
+---
+
+### Notifications Page
+Real-time notifications for likes, bookmarks, and comments.
+
+<p align="center">
+  <img src="test/Notifications-desktop.png" alt="Notifications Page - Desktop" width="800"/>
+</p>
+<p align="center"><em>Notifications Page - Desktop View</em></p>
+
+<details>
+<summary>View Tablet & Mobile Screenshots</summary>
+
+<p align="center">
+  <img src="test/Notifications-tab.png" alt="Notifications Page - Tablet" width="500"/>
+</p>
+<p align="center"><em>Notifications Page - Tablet View</em></p>
+
+<p align="center">
+  <img src="test/Notifications-mobile.png" alt="Notifications Page - Mobile" width="300"/>
+</p>
+<p align="center"><em>Notifications Page - Mobile View</em></p>
+
+</details>
 
 ---
 
@@ -62,6 +183,14 @@ All features work perfectly in local development environment.
 - **Docker** & **Docker Compose**
 - **Git**
 - **npm** or **yarn**
+
+### System Requirements
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| RAM | 4 GB | 8 GB |
+| Storage | 2 GB free | 5 GB free |
+| Docker | 20.10+ | Latest |
+| Node.js | 20.x | 22.x |
 
 ### Implemented Features
 
@@ -224,6 +353,38 @@ kinetixpro/
 ---
 
 ## Setup Instructions
+
+### Quick Start (Docker - Recommended)
+
+The fastest way to get up and running:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
+cd Fullstack-Engineer-Intern-KinetixPro
+
+# 2. Start all services
+docker compose up -d --build
+
+# 3. Wait for services to be ready (about 30-60 seconds)
+docker compose logs -f
+# Press Ctrl+C when you see "Server is running on port 5000"
+
+# 4. Access the application
+# Frontend: http://localhost:5173
+# Backend API: http://localhost:5000
+# PostgreSQL: localhost:5433
+```
+
+### Stopping the Application
+
+```bash
+# Stop all services
+docker compose down
+
+# Stop and remove volumes (reset database)
+docker compose down -v
+```
 
 ### Option 1: Docker (Recommended)
 
@@ -792,7 +953,7 @@ $token = $response.token
 1. **Clone repository**
    ```bash
    git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
-   cd kinetixpro
+   cd Fullstack-Engineer-Intern-KinetixPro
    ```
 
 2. **Use Docker Compose (easiest)**
@@ -953,52 +1114,3 @@ $token = $response.token
 - Suitable for development and small-scale production
 
 ---
-
-## Commit History Format
-
-All commits follow the required format:
-```
-feat(talent-growth): <description>
-```
-
-### Commit Examples:
-```
-feat(talent-growth): Migrate database from MongoDB to PostgreSQL
-feat(talent-growth): Update authentication system for PostgreSQL integration
-feat(talent-growth): Add Post CRUD API endpoints on backend
-feat(talent-growth): Add Comment API endpoints on backend
-feat(talent-growth): Add User profile API endpoints on backend
-feat(talent-growth): Add Docker configuration for backend server
-feat(talent-growth): Update Login view and auth service for PostgreSQL
-feat(talent-growth): Add Home view with posts feed and search functionality
-feat(talent-growth): Add Card and Post composer components for frontend
-feat(talent-growth): Add Detail Post view with comments display
-feat(talent-growth): Add User Profile view with followers and posts
-feat(talent-growth): Add Sidebar navigation with active state and Popup components
-feat(talent-growth): Add Bookmarks view to display user saved posts
-feat(talent-growth): Add Notifications backend controller and API
-feat(talent-growth): Add Notifications view with real-time updates
-feat(talent-growth): Add Messages view placeholder for future implementation
-feat(talent-growth): Configure Vue Router with all application routes
-feat(talent-growth): Add utility functions and API service helpers
-feat(talent-growth): Add base CSS styles and design tokens
-feat(talent-growth): Add Docker configuration for frontend client
-feat(talent-growth): Update App component layout and HTML entry point
-feat(talent-growth): Add client Docker ignore and default avatar asset
-feat(talent-growth): Update project dependencies and package configurations
-docs(talent-growth): Add comprehensive project README documentation
-```
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Author
-
-**Fullstack Engineer Intern Assessment - KinetixPro**
-
-GitHub Repository: https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro

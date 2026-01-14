@@ -1,6 +1,9 @@
 -- KinetixPro Database Schema
 -- PostgreSQL Database
 
+-- Create required extensions
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
 -- Drop existing tables if they exist
 DROP TABLE IF EXISTS comments CASCADE;
 DROP TABLE IF EXISTS posts CASCADE;
