@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: kinetixpro-api
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kinetixpro-db
+          property: connectionString
+
+databases:
+  - name: kinetixpro-db
+    plan: free
+    databaseName: kinetixpro
+    user: kinetixpro
