@@ -14,9 +14,11 @@ const corsOptions = {
         const allowedOrigins = [
             'http://localhost:5173',
             'http://localhost:3000',
-            'https://curious-pasca-0bf0da.netlify.app',
+            /\.netlify\.app$/,  // Allow all Netlify domains
             /\.ngrok-free\.dev$/,  // Allow all ngrok domains
-            /\.ngrok\.io$/  // Allow ngrok.io domains too
+            /\.ngrok\.io$/,  // Allow ngrok.io domains too
+            /\.replit\.app$/,  // Allow Replit domains
+            /\.replit\.dev$/  // Allow Replit dev domains
         ];
 
         if (!origin || allowedOrigins.some(allowed => 

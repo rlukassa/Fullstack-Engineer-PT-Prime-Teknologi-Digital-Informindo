@@ -4,6 +4,34 @@ A modern full-stack blog/social media platform built with Vue.js and Express.js,
 
 ---
 
+## IMPORTANT NOTE
+
+**Backend Deployment Status:** Not Deployed (Online) :(
+
+**Reason:** Backend and database deployment requires credit card verification (VISA/MasterCard) for free cloud platforms. I do not have access to a valid international payment card.
+
+**What's Working:**
+- Frontend: Fully deployed on Netlify - https://kinetixpro-fullstackdev.netlify.app
+- Codebase: Complete, production-ready code in GitHub
+- Local Setup: Full stack runs perfectly locally with Docker
+
+**How to Run Locally:**
+Clone the repository and start all services locally (no payment required):
+```bash
+git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
+cd kinetixpro
+docker compose up -d --build
+
+# Access:
+# Frontend: http://localhost:5173
+# Backend:  http://localhost:5000
+# Database: http://localhost:5433
+```
+
+All features work perfectly in local development environment.
+
+---
+
 ## LIVE DEPLOYMENT
 
 **Frontend (Netlify):** https://kinetixpro-fullstackdev.netlify.app/
@@ -314,9 +342,9 @@ POST /api/auth/register
 Content-Type: application/json
 
 {
-  "username": "johndoe",
-  "email": "john@example.com",
-  "password": "securepassword123"
+  "username": "newuser",
+  "email": "newuser@example.com",
+  "password": "password123"
 }
 ```
 
@@ -325,21 +353,21 @@ Content-Type: application/json
 {
   "message": "User registered successfully",
   "user": {
-    "id": 1,
-    "username": "johndoe",
-    "email": "john@example.com"
+    "id": 4,
+    "username": "newuser",
+    "email": "newuser@example.com"
   }
 }
 ```
 
-#### Login
+#### Login (using pre-seeded account)
 ```http
 POST /api/auth/login
 Content-Type: application/json
 
 {
-  "email": "john@example.com",
-  "password": "securepassword123"
+  "email": "lukas@gmail.com",
+  "password": "password123"
 }
 ```
 
@@ -349,8 +377,8 @@ Content-Type: application/json
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
     "id": 1,
-    "username": "johndoe",
-    "email": "john@example.com"
+    "username": "lukas",
+    "email": "lukas@gmail.com"
   }
 }
 ```
@@ -387,14 +415,14 @@ GET /api/posts?page=1&limit=10&search=keyword
   "posts": [
     {
       "_id": 1,
-      "title": "My First Post",
-      "caption": "Post content here...",
+      "title": "Welcome to KinetixPro",
+      "caption": "This is my first post on KinetixPro! Excited to share my journey.",
       "author": {
         "_id": 1,
-        "username": "johndoe"
+        "username": "lukas"
       },
-      "likes": 5,
-      "comments": 3,
+      "likes": 42,
+      "comments": 2,
       "createdAt": "2026-01-14T10:00:00.000Z",
       "isLiked": false,
       "isBookmarked": false
@@ -402,9 +430,9 @@ GET /api/posts?page=1&limit=10&search=keyword
   ],
   "pagination": {
     "currentPage": 1,
-    "totalPages": 5,
-    "totalPosts": 50,
-    "hasMore": true
+    "totalPages": 1,
+    "totalPosts": 6,
+    "hasMore": false
   }
 }
 ```
@@ -416,8 +444,8 @@ Authorization: Bearer <token>
 Content-Type: application/json
 
 {
-  "title": "My First Post",
-  "caption": "This is the content with **markdown** support.",
+  "title": "Beautiful Sunset",
+  "caption": "Captured this amazing sunset today",
   "authorId": 1
 }
 ```
@@ -427,16 +455,16 @@ Content-Type: application/json
 {
   "message": "Post created successfully",
   "post": {
-    "_id": 1,
-    "title": "My First Post",
-    "caption": "This is the content with **markdown** support.",
+    "_id": 7,
+    "title": "Beautiful Sunset",
+    "caption": "Captured this amazing sunset today",
     "author": {
       "_id": 1,
-      "username": "johndoe"
+      "username": "lukas"
     },
     "likes": 0,
     "comments": 0,
-    "createdAt": "2026-01-14T10:00:00.000Z"
+    "createdAt": "2026-01-14T11:00:00.000Z"
   }
 }
 ```
@@ -518,12 +546,21 @@ GET /api/posts/:postId/comments
   "comments": [
     {
       "_id": 1,
-      "content": "Great post!",
+      "content": "Great post! Love it!",
       "author": {
         "_id": 2,
-        "username": "janedoe"
+        "username": "kinetixpro"
       },
       "createdAt": "2026-01-14T11:00:00.000Z"
+    },
+    {
+      "_id": 2,
+      "content": "This is amazing! Thanks for sharing.",
+      "author": {
+        "_id": 3,
+        "username": "talentgrowth"
+      },
+      "createdAt": "2026-01-14T11:05:00.000Z"
     }
   ]
 }
@@ -531,12 +568,12 @@ GET /api/posts/:postId/comments
 
 #### Add Comment
 ```http
-POST /api/posts/:postId/comments
+POST /api/posts/1/comments
 Authorization: Bearer <token>
 Content-Type: application/json
 
 {
-  "content": "Great post!",
+  "content": "Great post! Love it!",
   "userId": 2
 }
 ```
@@ -575,7 +612,7 @@ Content-Type: application/json
 
 #### Get User Profile
 ```http
-GET /api/users/:id
+GET /api/users/1
 ```
 
 **Response:**
@@ -583,8 +620,8 @@ GET /api/users/:id
 {
   "user": {
     "_id": 1,
-    "username": "johndoe",
-    "email": "john@example.com",
+    "username": "lukas",
+    "email": "lukas@gmail.com",
     "createdAt": "2026-01-10T08:00:00.000Z"
   }
 }
@@ -746,55 +783,73 @@ $token = $response.token
 
 ---
 
-## Deployment Architecture
+## Deployment Guide
 
-### Current Deployment Status
+### For Local Development
 
-| Component | Platform | Status | URL |
-|-----------|----------|--------|-----|
-| **Frontend** | Netlify | LIVE | https://kinetixpro-fullstackdev.netlify.app |
-| **Backend** | ngrok (temp) | RUNNING | https://fancied-acanthine-brian.ngrok-free.dev |
-| **Database** | PostgreSQL (local) | RUNNING | localhost:5433 |
+**Clone and setup locally (no deployment needed):**
 
-### Frontend Deployment (Netlify) COMPLETED
-
-**What's configured:**
-- Automatic deployment on GitHub push to `main` branch
-- Environment variable: `VITE_API_URL` → ngrok backend URL
-- Build command: `npm run build-only` in `/client` directory
-- Static hosting with automatic HTTPS
-
-**Repository:** https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro
-
-**How it works:**
-1. Push code to GitHub `main` branch
-2. Netlify automatically builds and deploys frontend
-3. Changes go live within 2-3 minutes
-
-### Backend Deployment (TO BE DONE)
-
-**Remaining task:** Deploy backend to Vercel or similar platform for 24/7 uptime.
-
-**Current setup uses ngrok (temporary):**
-- URL changes on every restart
-- Requires local computer to be always on
-- Rate limited to 120 requests/minute on free tier
-
-**Next steps for permanent backend:**
-1. Create Vercel account (vercel.com)
-2. Connect GitHub repository to Vercel
-3. Create PostgreSQL database (Supabase/Neon)
-4. Set environment variables:
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
+   cd kinetixpro
    ```
-   DATABASE_URL = postgresql://...
-   JWT_SECRET = your_secret_key
-   NODE_ENV = production
+
+2. **Use Docker Compose (easiest)**
+   ```bash
+   docker compose up -d --build
    ```
-5. Deploy from root repository with:
-   - Root Directory: `server`
-   - Build Command: `npm install && npm run build`
-   - Start Command: `npm start`
-6. Update Netlify `VITE_API_URL` environment variable with new Vercel URL
+   - Frontend: http://localhost:5173
+   - Backend: http://localhost:5000
+   - Database: localhost:5433
+
+   **Or manual local setup:**
+   ```bash
+   # Terminal 1: PostgreSQL
+   docker compose up -d postgres
+
+   # Terminal 2: Backend
+   cd server && npm install && npm run dev
+
+   # Terminal 3: Frontend
+   cd client && npm install && npm run dev
+   ```
+
+### For Production Deployment
+
+**To deploy this project to production:**
+
+1. **Frontend Deployment (Netlify):**
+   - Connect GitHub repo to Netlify
+   - Set build command: `npm install && npm run build` (from `/client`)
+   - Frontend will auto-deploy on every push
+
+2. **Database Setup (Choose one):**
+   - **Neon** (free PostgreSQL): https://neon.tech (no card required)
+   - **Supabase** (free PostgreSQL): https://supabase.com (requires card verification)
+   - **Local PostgreSQL** (development only)
+
+3. **Backend Deployment (Choose one):**
+   - **Render.com**: Free tier, connects to GitHub, supports environment variables
+   - **Railway.app**: Free tier, easy GitHub integration
+   - **Other platforms**: Any Node.js hosting that supports Express
+
+4. **Environment Variables for Production:**
+   ```env
+   DATABASE_URL=<your_postgres_connection_string>
+   JWT_SECRET=<strong_random_key>
+   NODE_ENV=production
+   PORT=5000
+   ```
+
+5. **After Backend is Live:**
+   - Get your backend URL (e.g., https://your-app.render.com)
+   - In Netlify dashboard, add environment variable:
+     - Key: `VITE_API_URL`
+     - Value: `https://your-app.render.com/api`
+   - Trigger redeploy
+
+**Note:** All deployment platforms require account creation. Some require card verification (even if free tier).
 
 ---
 
