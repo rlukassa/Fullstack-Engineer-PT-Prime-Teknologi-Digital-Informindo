@@ -33,9 +33,9 @@ All features work perfectly in local development environment.
 
 ## LIVE DEPLOYMENT
 
-**GitHub Repository:** https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro
+**GitHub Repository:** https://github.com/rlukassa/Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo
 
-**Video Demo & Documentation:** *[incomplete]*
+**Video Demo & Documentation:** *https://drive.google.com/drive/u/0/folders/19pOdgXPJaF4iSOQhPSXg6udunV2o7D7h*
 
 ---
 
@@ -410,7 +410,7 @@ docker compose down -v
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
+   git clone https://github.com/rlukassa/Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo.git
    cd prime
    ```
 
@@ -843,7 +843,7 @@ Use these pre-seeded accounts to test the application:
 - [ ] Navigate pagination
 
 #### Comments
-- [ ] Add comment to a pre-seeded post (e.g., "Welcome to KinetixPro" post)
+- [ ] Add comment to a pre-seeded post (e.g., "Welcome to PT Prime Teknologi Digital Informindo" post)
 - [ ] Edit own comment
 - [ ] Delete own comment
 - [ ] Verify cannot edit/delete other's comments
