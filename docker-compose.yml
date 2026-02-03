@@ -1,37 +1,35 @@
 services:
-  # PostgreSQL Database
   postgres:
     image: postgres:16-alpine
-    container_name: kinetixpro-db
+    container_name: prime-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: kinetixpro
+      POSTGRES_DB: prime
     ports:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./server/database:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d kinetixpro"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d prime"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  # Backend Server
   server:
     build:
       context: ./server
       dockerfile: Dockerfile
-    container_name: kinetixpro-server
+    container_name: prime-server
     restart: unless-stopped
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/kinetixpro
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/prime
       PORT: 5000
-      JWT_SECRET: kinetixpro_super_secret_key_2026_change_this_in_production
+      JWT_SECRET: prime_super_secret_key_2026_change_this_in_production
       NODE_ENV: development
     depends_on:
       postgres:
@@ -40,12 +38,11 @@ services:
       - ./server:/app
       - /app/node_modules
 
-  # Frontend Client
   client:
     build:
       context: ./client
       dockerfile: Dockerfile
-    container_name: kinetixpro-client
+    container_name: prime-client
     restart: unless-stopped
     ports:
       - "5173:5173"

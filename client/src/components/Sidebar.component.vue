@@ -102,7 +102,7 @@ const handleTweet = () => {
   <div class="sidebar" :class="{ 'sidebar-collapsed': isCollapsed }">
     <div class="sidebar-header">
       <div class="logo-container">
-        <img src="@/assets/kinetix-logo-red.svg" alt="KinetixPro" class="logo-icon" />
+        <img src="@/assets/prime-2.svg" alt="Prime Logo" class="logo-icon" />
       </div>
     </div>
 

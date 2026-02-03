@@ -3,11 +3,11 @@
 
 INSERT INTO users (username, email, password) VALUES 
 ('lukas', 'lukas@gmail.com', '$2b$10$apeyKy9kZoKtHvzQW9YX8OR/lkDSjqxd6E0xdgoEzEJkWIu.RCSt.'),
-('kinetixpro', 'kinetixpro@gmail.com', '$2b$10$apeyKy9kZoKtHvzQW9YX8OR/lkDSjqxd6E0xdgoEzEJkWIu.RCSt.'),
+('prime', 'prime@gmail.com', '$2b$10$apeyKy9kZoKtHvzQW9YX8OR/lkDSjqxd6E0xdgoEzEJkWIu.RCSt.'),
 ('talentgrowth', 'talentgrowth@gmail.com', '$2b$10$apeyKy9kZoKtHvzQW9YX8OR/lkDSjqxd6E0xdgoEzEJkWIu.RCSt.');
 
 INSERT INTO posts (title, caption, image, likes, author_id) VALUES 
-('Welcome to KinetixPro', 'This is my first post on KinetixPro! Excited to share my journey.', 'https://picsum.photos/600/400?random=1', 42, 1),
+('Welcome to PT Prime Teknologi Digital Informindo', 'This is my first post on PT Prime Teknologi Digital Informindo! Excited to share my journey.', 'https://picsum.photos/600/400?random=1', 42, 1),
 ('Beautiful Sunset', 'Captured this amazing sunset today 🌅', 'https://picsum.photos/600/400?random=2', 128, 1),
 ('Coffee Time', 'Starting my day with a perfect cup of coffee ☕', 'https://picsum.photos/600/400?random=3', 85, 2),
 ('Tech Talk', 'Just finished an amazing webinar on cloud computing!', NULL, 56, 2),

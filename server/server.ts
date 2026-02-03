@@ -43,7 +43,7 @@ app.use('/api/users', userRoutes);
 
 app.get('/', (req: Request, res: Response) => {
     res.json({
-        message: 'KinetixPro API is running',
+        message: 'Prime API is running',
         database: 'Check console for database status'
     });
 });

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: kinetixpro-api
+    name: prime-api
     env: node
     region: singapore
     plan: free
@@ -14,11 +14,11 @@ services:
         generateValue: true
       - key: DATABASE_URL
         fromDatabase:
-          name: kinetixpro-db
+          name: prime-db
           property: connectionString
 
 databases:
-  - name: kinetixpro-db
+  - name: prime-db
     plan: free
-    databaseName: kinetixpro
-    user: kinetixpro
+    databaseName: prime
+    user: prime

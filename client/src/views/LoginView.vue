@@ -2,10 +2,10 @@
   <div class="login-container">
     <div class="login-card">
       <div class="logo-section">
-        <img src="@/assets/kinetix-logo-red.svg" alt="KinetixPro Logo" class="logo" />
+        <img src="@/assets/prime-3.svg" alt="Prime Logo" class="logo" />
       </div>
       
-      <h1 class="login-title">Log in to KinetixPro</h1>
+      <h1 class="login-title">Log in to PT Prime Teknologi Digital Informindo</h1>
       
       <form @submit.prevent="handleSubmit">
         <div v-if="!isLogin" class="form-group">
@@ -54,7 +54,7 @@
       <div class="toggle-mode">
         <span v-if="isLogin">
           Don't have an account? 
-          <a @click="toggleMode" href="#">Sign up for KinetixPro</a>
+          <a @click="toggleMode" href="#">Sign up here</a>
         </span>
         <span v-else>
           Already have an account? 
@@ -161,7 +161,7 @@ const handleSubmit = async () => {
 
 .logo {
   width: 150px;
-  height: 150px;
+  /* height: 150px; */
 }
 
 .login-title {
