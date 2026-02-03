@@ -1,4 +1,4 @@
-# KinetixPro
+# PT Prime  Teknologi Digital Informindo
 
 A modern full-stack blog/social media platform built with Vue.js and Express.js, featuring an interface for sharing posts, engaging with content through likes and bookmarks, and receiving real-time notifications.
 
@@ -11,15 +11,14 @@ A modern full-stack blog/social media platform built with Vue.js and Express.js,
 **Reason:** Backend and database deployment requires credit card verification (VISA/MasterCard) for free cloud platforms. I do not have access to a valid international payment card.
 
 **What's Working:**
-- Frontend: Fully deployed on Netlify - https://kinetixpro-fullstackdev.netlify.app
 - Codebase: Complete, production-ready code in GitHub
 - Local Setup: Full stack runs perfectly locally with Docker
 
 **How to Run Locally:**
 Clone the repository and start all services locally (no payment required):
 ```bash
-git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
-cd Fullstack-Engineer-Intern-KinetixPro
+git clone https://github.com/rlukassa/Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo
+cd Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo
 docker compose up -d --build
 
 # Access:
@@ -34,11 +33,9 @@ All features work perfectly in local development environment.
 
 ## LIVE DEPLOYMENT
 
-**Frontend (Netlify):** https://kinetixpro-fullstackdev.netlify.app/
-
 **GitHub Repository:** https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro
 
-**Video Demo & Documentation:** https://drive.google.com/drive/u/0/folders/1kHBuep5eeYdrzKdjZ4TNMrbACvqe96p-
+**Video Demo & Documentation:** *[incomplete]*
 
 ---
 
@@ -261,7 +258,7 @@ Real-time notifications for likes, bookmarks, and comments.
 ## Project Structure
 
 ```
-kinetixpro/
+prime/
 ├── client/                     # Frontend Vue.js application
 │   ├── public/                 # Static assets
 │   │   ├── default-avatar.svg  # Default user avatar
@@ -360,8 +357,8 @@ The fastest way to get up and running:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
-cd Fullstack-Engineer-Intern-KinetixPro
+git clone https://github.com/rlukassa/Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo.git
+cd Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo
 
 # 2. Start all services
 docker compose up -d --build
@@ -390,8 +387,8 @@ docker compose down -v
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
-   cd kinetixpro
+   git clone https://github.com/rlukassa/Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo.git
+   cd prime
    ```
 
 2. **Start all services with Docker Compose**
@@ -414,7 +411,7 @@ docker compose down -v
 1. **Clone the repository**
    ```bash
    git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
-   cd kinetixpro
+   cd prime
    ```
 
 2. **Start PostgreSQL container only**
@@ -444,7 +441,7 @@ docker compose down -v
 
 Create a `.env` file in the root directory:
 ```env
-DATABASE_URL=postgresql://postgres:postgres@localhost:5433/kinetixpro
+DATABASE_URL=postgresql://postgres:postgres@localhost:5433/prime
 JWT_SECRET=your_jwt_secret_key
 NODE_ENV=development
 ```
@@ -576,8 +573,8 @@ GET /api/posts?page=1&limit=10&search=keyword
   "posts": [
     {
       "_id": 1,
-      "title": "Welcome to KinetixPro",
-      "caption": "This is my first post on KinetixPro! Excited to share my journey.",
+      "title": "Welcome to PT Prime Teknologi Digital Informindo",
+      "caption": "This is my first post on PT Prime Teknologi Digital Informindo! Excited to share my journey.",
       "author": {
         "_id": 1,
         "username": "lukas"
@@ -710,7 +707,7 @@ GET /api/posts/:postId/comments
       "content": "Great post! Love it!",
       "author": {
         "_id": 2,
-        "username": "kinetixpro"
+        "username": "prime"
       },
       "createdAt": "2026-01-14T11:00:00.000Z"
     },
@@ -822,7 +819,7 @@ Use these pre-seeded accounts to test the application:
 | Username | Email | Password | Role |
 |----------|-------|----------|------|
 | lukas | lukas@gmail.com | password123 | User |
-| kinetixpro | kinetixpro@gmail.com | password123 | User |
+| prime | prime@gmail.com | password123 | User |
 | talentgrowth | talentgrowth@gmail.com | password123 | User |
 
 ### Manual Testing Checklist
@@ -952,8 +949,8 @@ $token = $response.token
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/rlukassa/Fullstack-Engineer-Intern-KinetixPro.git
-   cd Fullstack-Engineer-Intern-KinetixPro
+   git clone https://github.com/rlukassa/Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo.git
+   cd Fullstack-Engineer-PT-Prime-Teknologi-Digital-Informindo
    ```
 
 2. **Use Docker Compose (easiest)**
